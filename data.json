@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nom": "Dupont",
+    "prenom": "Jean",
+    "telephone": "0102030405",
+    "email": "jean.dupont@example.com",
+    "montant": 1500,
+    "photo": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "transactions": [
+      
+    ]
+  },
+  {
+    "id": 2,
+    "nom": "Martin",
+    "prenom": "Sophie",
+    "telephone": "0607080910",
+    "email": "sophie.martin@example.com",
+    "montant": 2200,
+    "photo": "https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "transactions": [
+      
+    ]
+  },
+  {
+    "id": 3,
+    "nom": "Durand",
+    "prenom": "Pierre",
+    "telephone": "0708091011",
+    "email": "pierre.durand@example.com",
+    "montant": 5000,
+    "photo": "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "transactions": [
+      
+    ]
+  }
+]

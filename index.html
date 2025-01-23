@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion des Transactions</title>
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Itim&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="style/output.css">
+  </head>
+  <body class="bg-gray-00 font-poppins">
+    <!-- Card Utilisateur -->
+    <div
+      class="max-w-4xl mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden"
+    >
+      <div class="flex p-6 bg-green-100">
+        <!-- Photo Profil -->
+        <div class="flex-shrink-0 mr-6">
+          <img alt="Photo de Profil" class="w-48 h-48 rounded-lg" />
+        </div>
+        <!-- Informations Utilisateur -->
+        <div class="flex flex-col justify-between">
+          <h2 class="text-2xl font-semibold"></h2>
+          <p class="text-gray-500"></p>
+          <p class="text-gray-500"></p>
+          <p class="text-green-500 font-semibold"></p>
+        </div>
+      </div>
+
+      <!-- Bouton Ajouter Transaction -->
+      <div class="p-6 border-t flex justify-between">
+        <button
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        >
+          Ajout utilisateur
+        </button>
+        <button
+          id="addTransactionButton"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        >
+          Ajout Transaction
+        </button>
+      </div>
+
+      <!-- Tableau Transactions -->
+      <div class="overflow-x-auto p-6">
+        <table class="min-w-full bg-white shadow-md rounded-lg">
+          <thead>
+            <tr class="border-b">
+              <th class="px-4 py-2 text-left">Date</th>
+              <th class="px-4 py-2 text-left">Numéro</th>
+              <th class="px-4 py-2 text-left">Type</th>
+              <th class="px-4 py-2 text-left">Montant</th>
+            </tr>
+          </thead>
+          <tbody id="transactionsTable">
+            <!-- Les transactions vont ici -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="p-6 flex justify-between">
+        <button
+          id="prevButton"
+          class="bg-gray-500 text-white px-4 py-2 rounded-lg"
+          disabled
+        >
+          Précédent
+        </button>
+        <button
+          id="nextButton"
+          class="bg-gray-500 text-white px-4 py-2 rounded-lg"
+        >
+          Suivant
+        </button>
+      </div>
+    </div>
+
+    <!-- Popup Ajouter Transaction -->
+    <div
+      id="transactionPopup"
+      class="fixed inset-0 bg-gray-500 bg-opacity-50 hidden justify-center items-center"
+    >
+      
+        <div class="bg-blue-500 p-6 rounded-lg shadow-lg w-[20%] ml-[80%]">
+          <h3 class="text-xl text-center text-white font-semibold mb-4">
+            Transactions
+          </h3>
+          <form id="transactionForm">
+            <div class="mb-4">
+              <label for="transactionDate" class="block text-white"
+                >Date</label
+              >
+              <input
+                type="Date"
+                id="transactionDate"
+                class="w-full p-2 border border-gray-300 rounded"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="transactionNumber" class="block text-white"
+                >Numéro</label
+              >
+              <input
+                type="text"
+                id="transactionNumber"
+                class="w-full p-2 border border-gray-300 rounded"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="transactionType" class="block text-white"
+                >Type de transaction</label
+              >
+              <select
+                id="transactionType"
+                class="w-full p-2 border border-gray-300 rounded"
+                required
+              >
+                <option value="retrait">Retrait</option>
+                <option value="depot">Dépôt</option>
+                <option value="transfert">Transfert</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label for="transactionAmount" class="block text-white"
+                >Montant</label
+              >
+              <input
+                type="number"
+                id="transactionAmount"
+                class="w-full p-2 border border-gray-300 rounded"
+                required
+              />
+            </div>
+            <div class="flex justify-between">
+              <button
+                type="button"
+                id="closeModal"
+                class="bg-gray-500 text-white px-4 py-2 rounded-lg"
+              >
+                Annuler
+              </button>
+              <button
+                type="submit" class="bg-white text-blue-500 px-4 py-2 rounded-lg"
+              >
+                Ajouter
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="script/app.js" type="module"></script>
+  </body>
+</html>
