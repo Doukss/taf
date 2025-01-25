@@ -36,6 +36,7 @@
       <!-- Bouton Ajouter Transaction -->
       <div class="p-6 border-t flex justify-between">
         <button
+        id="addUserButton"
           class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
         >
           Ajout utilisateur
@@ -102,7 +103,7 @@
                 type="Date"
                 id="transactionDate"
                 class="w-full p-2 border border-gray-300 rounded"
-                required
+               
               />
             </div>
             <div class="mb-4">
@@ -113,7 +114,7 @@
                 type="text"
                 id="transactionNumber"
                 class="w-full p-2 border border-gray-300 rounded"
-                required
+                
               />
             </div>
             <div class="mb-4">
@@ -123,7 +124,7 @@
               <select
                 id="transactionType"
                 class="w-full p-2 border border-gray-300 rounded"
-                required
+                
               >
                 <option value="retrait">Retrait</option>
                 <option value="depot">Dépôt</option>
@@ -138,7 +139,7 @@
                 type="number"
                 id="transactionAmount"
                 class="w-full p-2 border border-gray-300 rounded"
-                required
+                
               />
             </div>
             <div class="flex justify-between">
@@ -159,7 +160,46 @@
         </div>
       </div>
     </div>
+    <!-- Popup Ajouter Utilisateur -->
+  <div id="userPopup" class="fixed inset-0 bg-gray-500 bg-opacity-50 hidden flex justify-start items-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-64">
 
+    <h3 class="text-lg font-semibold text-gray-800 mb-4">
+      Ajouter un nouvel utilisateur
+    </h3>
+    <form id="userForm">
+      <div class="mb-4">
+        <label for="userPrenom" class="block text-gray-700 font-medium">Prénom</label>
+        <input type="text" id="userPrenom" class="w-full p-3 border border-gray-300 rounded-lg" />
+        <p id="prenomError" class="text-red-500 text-sm"></p>
+      </div>
+      <div class="mb-4">
+        <label for="userNom" class="block text-gray-700 font-medium">Nom</label>
+        <input type="text" id="userNom" class="w-full p-3 border border-gray-300 rounded-lg" />
+        <p id="nomError" class="text-red-500 text-sm"></p>
+      </div>
+      <div class="mb-4">
+        <label for="userNom" class="block text-gray-700 font-medium">Photo</label>
+        <input type="text" id="userphoto" class="w-full p-3 border border-gray-300 rounded-lg" />
+        <p id="nomError" class="text-red-500 text-sm"></p>
+      </div>
+      <div class="mb-4">
+        <label for="userMontant" class="block text-gray-700 font-medium">Montant</label>
+        <input type="text" id="userMontant" class="w-full p-3 border border-gray-300 rounded-lg" />
+        <p id="montantError" class="text-red-500 text-sm"></p>
+      </div>
+      <div class="flex justify-between">
+        <button type="button" id="closeUserModal" class="bg-gray-500 text-white px-4 py-2 rounded-lg">
+          Annuler
+        </button>
+        <button type="submit" class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-lg">
+          Ajouter
+        </button>
+      </div>
+    </form>
+  </div>
+  </div>
+<script src="script/valide.js"></script>
     <script src="script/app.js" type="module"></script>
   </body>
 </html>

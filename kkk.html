@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulaire Popup</title>
+  <script defer src="script.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f3f4f6;
+    }
+
+    .btn-add-user {
+      background-color: #4f46e5;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .popup-container {
+      position: fixed;
+      top: 0;
+      right: -100%; /* Caché à droite */
+      width: 30%;
+      height: 100%;
+      background-color: #fff;
+      box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .popup-container.active {
+      right: 0; /* S'affiche */
+    }
+
+    .popup-header {
+      padding: 16px;
+      background-color: #4f46e5;
+      color: white;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .popup-body {
+      padding: 16px;
+    }
+
+    .popup-body label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    .popup-body input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+
+    .popup-body .btn-close {
+      background-color: #ef4444;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.875rem;
+      margin-top: -12px;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <button class="btn-add-user">Ajouter utilisateur</button>
+
+  <!-- Popup -->
+  <div class="popup-container" id="popupForm">
+    <div class="popup-header">Ajouter un utilisateur</div>
+    <div class="popup-body">
+      <form id="userForm">
+        <label for="firstName">Nom</label>
+        <input type="text" id="firstName" placeholder="Entrez le nom" />
+
+        <label for="lastName">Prénom</label>
+        <input type="text" id="lastName" placeholder="Entrez le prénom" />
+
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="Entrez l'e-mail" />
+
+        <label for="phone">Téléphone</label>
+        <input type="tel" id="phone" placeholder="Entrez le numéro de téléphone" />
+
+        <label for="photo">Photo</label>
+        <input type="file" id="photo" accept="image/*" />
+
+        <button type="submit" class="btn-add-user">Soumettre</button>
+      </form>
+      <button class="btn-close">Fermer</button>
+    </div>
+  </div>
+
+  <script>
+    const popupForm = document.getElementById("popupForm");
+    const addButton = document.querySelector(".btn-add-user");
+    const closeButton = document.querySelector(".btn-close");
+    const userForm = document.getElementById("userForm");
+
+    // Ouvrir le popup
+    addButton.addEventListener("click", () => {
+      popupForm.classList.add("active");
+    });
+
+    // Fermer le popup
+    closeButton.addEventListener("click", () => {
+      popupForm.classList.remove("active");
+    });
+
+    // Validation du formulaire
+    userForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      // Réinitialiser les erreurs existantes
+      const errorMessages = document.querySelectorAll(".error-message");
+      errorMessages.forEach((msg) => msg.remove());
+
+      let isValid = true;
+
+      const firstName = document.getElementById("firstName");
+      const lastName = document.getElementById("lastName");
+      const email = document.getElementById("email");
+      const phone = document.getElementById("phone");
+
+      // Validation du nom
+      if (!firstName.value) {
+        displayError(firstName, "Le champ nom est obligatoire.");
+        isValid = false;
+      }
+
+      // Validation du prénom
+      if (!lastName.value) {
+        displayError(lastName, "Le champ prénom est obligatoire.");
+        isValid = false;
+      }
+
+      // Validation de l'email
+      if (!email.value || !email.value.includes("@")) {
+        displayError(email, "Veuillez entrer une adresse e-mail valide.");
+        isValid = false;
+      }
+
+      // Validation du téléphone
+      if (!phone.value || !/^\d{10}$/.test(phone.value)) {
+        displayError(phone, "Veuillez entrer un numéro de téléphone valide (10 chiffres).");
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert("Utilisateur ajouté avec succès !");
+        userForm.reset();
+        popupForm.classList.remove("active");
+      }
+    });
+
+    // Fonction d'affichage des erreurs
+    function displayError(inputElement, message) {
+      const errorMessage = document.createElement("div");
+      errorMessage.textContent = message;
+      errorMessage.classList.add("error-message");
+      inputElement.parentNode.insertBefore(errorMessage, inputElement.nextSibling);
+    }
+  </script>
+</body>
+</html>
+
+</body>
+</html>
