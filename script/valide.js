@@ -1,50 +1,4 @@
-document.getElementById("transactionForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Empêche l'envoi du formulaire
-  
-    // Réinitialisation des erreurs existantes
-    const errorMessages = document.querySelectorAll(".error-message");
-    errorMessages.forEach((msg) => msg.remove());
-  
-    let isValid = true;
-  
-    // Validation du champ "Date"
-    const transactionDate = document.getElementById("transactionDate");
-    if (!transactionDate.value) {
-      displayError(transactionDate, "La date est obligatoires.");
-      isValid = false;
-    }
-  
-    // Validation du champ "Numéro"
-    const transactionNumber = document.getElementById("transactionNumber");
-    if (!transactionNumber.value) {
-      displayError(transactionNumber, "Le numéro de transaction est obligatoire.");
-      isValid = false;
-    } else if (!/^\d+$/.test(transactionNumber.value)) {
-      displayError(transactionNumber, "Le numéro doit contenir uniquement des chiffres.");
-      isValid = false;
-    }
-  
-    // Validation du champ "Type de transaction"
-    const transactionType = document.getElementById("transactionType");
-    if (!transactionType.value) {
-      displayError(transactionType, "Le type de transaction est obligatoire.");
-      isValid = false;
-    }else if (transactionType.value < montant){
-      displayError(transactionType, "Le montant doit supperieur ou egal à la solde.");
 
-    }
-
-    
-  
-    // Validation du champ "Montant"
-    const transactionAmount = document.getElementById("transactionAmount");
-    if (!transactionAmount.value) {
-      displayError(transactionAmount, "Le montant est obligatoire.");
-      isValid = false;
-    } 
-  
-    
-  });
   
   function displayError(inputElement, message) {
     const errorMessage = document.createElement("div");
@@ -108,11 +62,14 @@ document.getElementById("userForm").addEventListener("submit", function (e) {
   // Récupérer les champs
   const prenom = document.getElementById("userPrenom");
   const nom = document.getElementById("userNom");
+  const photo = document.getElementById("userPhoto");
   const montant = document.getElementById("userMontant");
+
 
   // Récupérer les éléments d'erreur
   const prenomError = document.getElementById("prenomError");
   const nomError = document.getElementById("nomError");
+  const photoError = document.getElementById("photoError");
   const montantError = document.getElementById("montantError");
 
   let isValid = true;
@@ -133,11 +90,18 @@ document.getElementById("userForm").addEventListener("submit", function (e) {
     nomError.textContent = ""; // Pas d'erreur
   }
 
+  // Validation du photo
+  if (!photo.value.trim()) {
+    photoError.textContent = "Le photo est obligatoire.";
+    isValid = false;
+  } else {
+    photoError.textContent = ""; // Pas d'erreur
+  }
+
   // Validation du montant
   if (!montant.value.trim()) {
     montantError.textContent = "Le montant est obligatoire.";
     isValid = false;
-  } else if (isNaN(montant.value) || parseFloat(montant.value) <= 0) {
     montantError.textContent = "Veuillez entrer un montant valide (nombre supérieur à 0).";
     isValid = false;
   } else {
@@ -150,3 +114,4 @@ document.getElementById("userForm").addEventListener("submit", function (e) {
     // Vous pouvez soumettre le formulaire ou effectuer une action
   }
 });
+
